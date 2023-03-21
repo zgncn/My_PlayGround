@@ -2,67 +2,93 @@ import random
 
 actions=["rock","paper","scissors"]
 
-player1_score=0
-player2_score=0
+#Set the scores of players to 0
+player_score=0
+computer_score=0
 
+
+#Ask the user how many rounds they want to play
+round_number=int(input("How many rounds you want to play"))
+
+#Add a round_counter that is 0 at the beginning
 round_counter=0
 
-round_of_game=int(input("How many rounds you want to play"))
 
+#Write a while loop and put the game inside
 while True:
 
+
+  #Increase round_counter by and print it
+  round_counter +=1
+  print("Round number: ",round_counter)
   
-  round_counter+=1
 
 
-  
-  player1_choice=actions[random.randint(0,2)]
-  player2_choice=actions[random.randint(0,2)]
+  #Select a random action for computer
+  computer_choice=actions[random.randint(0,2)]
 
   
-  print(player1_choice)
-  print(player2_choice)
-  
-  if player1_choice == player2_choice:
-    print("Tie! Both player chose same action.")
 
+  #Ask player to choose an action
+  player_choice=input("Make your choice ['rock','paper'','scissor'']")
   
-  elif player1_choice == 'paper':
-    if player2_choice == 'rock':
-      print("Winner is: Player 1")
-      player1_score +=1
+  
+
+  #Print the players choices
+  print(player_choice)
+  print(computer_choice)
+  
+
+
+
+  #tie condition
+  if player_choice == computer_choice:
+    print("TIE")
+  
+
+
+  #Remaining conditions
+  elif computer_choice=="paper":
+    if player_choice=="rock":
+      print("Computer won")
+      computer_score +=1
     else:
-      print("Winner is: Player 2")
-      player2_score +=1
-
-  elif player1_choice == 'rock':
-    if player2_choice == 'paper':
-      print("Winner is: Player 2")
-      player2_score +=1
+      print("Player won")
+      player_score +=1
+  
+  elif computer_choice=="rock":
+    if player_choice=="paper":
+      print("Player won")
+      player_score +=1
     else:
-      print("Winner is: Player 1")
-      player1_score +=1
+      print("Computer won")
+      computer_score +=1
 
-  elif player1_choice == 'scissors':
-    if player2_choice == 'paper':
-      print("Winner is: Player 1")
-      player1_score +=1
+  elif computer_choice=="scissor":
+    if player_choice=="paper":
+      print("Computer won")
+      computer_score +=1
     else:
-      print("Winner is: Player 2")
-      player2_score +=1
+      print("Player won")
+      player_score +=1
 
   
-  print("Score....Player1: ",player1_score,"**",
-      "Player2: ",player2_score)
 
-  
-  if round_counter==round_of_game:
+
+
+
+
+  #Stop the while loop if the round_counter equals the number of total rounds
+  if round_counter==round_number:
     break
+  
 
 
-if player1_score == player2_score:
-  print("There is no winner, tie.")
-elif player1_score > player2_score:
-  print("Player 1 won with score", player1_score, ":", player2_score)
-elif player1_score < player2_score:
-  print("Player 2 won with score", player1_score, ":", player2_score) 
+#Print the outcome of the game by using conditional statements
+if computer_score==player_score:
+  print("There is no winner .... TIE", computer_score, ":", player_score)
+elif computer_score>player_score:
+  print("Computer won with score...", computer_score, ":", player_score)
+else:
+  print("Player won with score", computer_score, ":", player_score)
+
