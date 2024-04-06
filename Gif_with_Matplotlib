@@ -1,0 +1,46 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.animation as animation
+
+fig, ax = plt.subplots()
+ax.set_xlim([0, 10])
+ax.set_ylim([0, 10])
+
+# Noktalar
+scat1 = ax.scatter(0, 5, color='red')
+scat2 = ax.scatter(5, 0, color='blue')
+
+
+# Hareket fonksiyonu
+def animate(i):
+    # Birinci nokta
+    x1 = i / (len(x) - 1) * 10
+    y1 = 5
+
+    # İkinci nokta
+    x2 = 5
+    y2 = i / (len(x) - 1) * 10
+
+    # Noktaları güncelle
+    scat1.set_offsets((x1, y1))
+    scat2.set_offsets((x2, y2))
+
+    return scat1, scat2
+
+
+# Hareket aralığı
+x = np.linspace(0, 1, 100)
+
+# Animasyon
+ani = animation.FuncAnimation(fig, animate, repeat=True,
+                              frames=len(x) - 1, interval=50)
+
+
+
+#gifi kaydetmek için
+writer = animation.PillowWriter(fps=15,
+                                 metadata=dict(artist='Me'),
+                                 bitrate=1800)
+ani.save('scatter.gif', writer=writer)
+
+plt.show()
